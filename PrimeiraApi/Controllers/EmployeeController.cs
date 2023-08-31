@@ -45,6 +45,15 @@ namespace PrimeiraApi.Controllers
             return File(dataBytes, "image/jpeg");
         }
 
+        [HttpGet]
+        [Route("getPerPage")]
+        public IActionResult GetPerPage(int pageNumber, int pageQuantity)
+        {
+            var employes = _employeeRepoository.GetPerPage(pageNumber-1, pageQuantity);
+
+            return Ok(employes);
+        }
+
         [Authorize]
         [HttpGet]
         public IActionResult Get() 

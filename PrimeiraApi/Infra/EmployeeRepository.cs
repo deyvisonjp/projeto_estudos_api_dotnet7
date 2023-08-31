@@ -10,6 +10,11 @@ namespace PrimeiraApi.Infra
             _context.Employees.Add(employee);
             _context.SaveChanges();
         }
+        public List<Employee> GetPerPage(int pageNumber, int pageQuantity)
+        {
+            return _context.Employees.Skip(pageNumber * pageQuantity).Take(pageQuantity).ToList();
+        }
+
 
         public List<Employee> GetAll()
         {

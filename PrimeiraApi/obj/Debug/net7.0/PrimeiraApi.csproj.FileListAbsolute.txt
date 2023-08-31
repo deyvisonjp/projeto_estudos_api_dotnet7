@@ -7,6 +7,7 @@ C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\
 C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\bin\Debug\net7.0\PrimeiraApi.pdb
 C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\bin\Debug\net7.0\Azure.Core.dll
 C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\bin\Debug\net7.0\Azure.Identity.dll
+C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
@@ -69,4 +70,3 @@ C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\
 C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\obj\Debug\net7.0\PrimeiraApi.pdb
 C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\obj\Debug\net7.0\PrimeiraApi.genruntimeconfig.cache
 C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\obj\Debug\net7.0\ref\PrimeiraApi.dll
-C:\Users\a841068\EstudosCursosAcelera\Youtube\API_Core7\PrimeiraApi\PrimeiraApi\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
