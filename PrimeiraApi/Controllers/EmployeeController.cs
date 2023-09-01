@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PrimeiraApi.Infra;
 using PrimeiraApi.Model;
 using PrimeiraApi.ViewModel;
 
@@ -47,18 +49,43 @@ namespace PrimeiraApi.Controllers
 
         [HttpGet]
         [Route("getPerPage")]
-        public IActionResult GetPerPage(int pageNumber, int pageQuantity)
+        public async Task<IActionResult> GetPerPageAsync(int pageNumber, int pageQuantity)
         {
-            var employes = _employeeRepoository.GetPerPage(pageNumber-1, pageQuantity);
+            if (pageNumber < 1 || pageQuantity < 1)
+            {
+                return BadRequest("pageNumber e pageQuantity devem ser maiores ou iguais a 1.");
+            }
 
-            return Ok(employes);
+            if (pageQuantity > 1000)
+            {
+                return BadRequest("Tantos registros de uma só vez poderão causar travamento na consulta ao banco de dados.");
+            }
+
+            try
+            {
+                var totalEmployees = _employeeRepoository.GetTotalCount();
+                var employees = await _employeeRepoository.GetPerPageAsync(pageNumber-1, pageQuantity);
+
+                return Ok(new
+                {
+                    totalEmployees,
+                    pageNumber,
+                    pageQuantity,
+                    employees
+                });
+            }
+            catch (Exception ex)
+            {
+                // Trate o erro de forma apropriada, como logando-o ou retornando uma resposta de erro.
+                return StatusCode(500, "Ocorreu um erro ao buscar os registros.");
+            }
         }
 
         [Authorize]
         [HttpGet]
         public IActionResult Get() 
         {
-            var employees = _employeeRepoository.GetAll();
+            var employees = _employeeRepoository.GetAllAsync();
             return Ok(employees);
         }
     }

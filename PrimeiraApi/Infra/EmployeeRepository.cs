@@ -1,4 +1,5 @@
-﻿using PrimeiraApi.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using PrimeiraApi.Model;
 
 namespace PrimeiraApi.Infra
 {
@@ -10,20 +11,27 @@ namespace PrimeiraApi.Infra
             _context.Employees.Add(employee);
             _context.SaveChanges();
         }
-        public List<Employee> GetPerPage(int pageNumber, int pageQuantity)
-        {
-            return _context.Employees.Skip(pageNumber * pageQuantity).Take(pageQuantity).ToList();
+        public async Task<List<Employee>> GetPerPageAsync(int pageNumber, int pageQuantity)
+        { 
+            var employees = await _context.Employees.Skip(pageNumber * pageQuantity).Take(pageQuantity).AsNoTracking().ToListAsync();
+            return employees;
         }
 
-
-        public List<Employee> GetAll()
+        public async Task<List<Employee>> GetAllAsync()
         {
-            return _context.Employees.ToList();
+            var employees = await _context.Employees.AsNoTracking().ToListAsync();
+            return employees;
         }
 
         public Employee Get(int id)
         {
             return _context.Employees.Find(id);
         }
+
+        public int GetTotalCount()
+        {
+            return _context.Employees.Count();
+        }
+
     }
 }

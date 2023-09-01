@@ -3,8 +3,9 @@
     public interface IEmployeeRepoository
     {
         void Add(Employee employee);
-        List<Employee> GetPerPage(int pageNumber, int pageQuantity);
-        List<Employee> GetAll();
+        Task<List<Employee>> GetPerPageAsync(int pageNumber, int pageQuantity);
+        Task<List<Employee>> GetAllAsync();
         Employee? Get(int id);
+        int GetTotalCount();
     }
 }
