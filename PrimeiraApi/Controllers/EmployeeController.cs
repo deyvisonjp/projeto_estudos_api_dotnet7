@@ -14,10 +14,12 @@ namespace PrimeiraApi.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeRepoository _employeeRepoository;
+        private readonly ILogger<EmployeeController> _logger;
 
-        public EmployeeController(IEmployeeRepoository employeeRepoository)
+        public EmployeeController(IEmployeeRepoository employeeRepoository, ILogger<EmployeeController> logger)
         {
-            _employeeRepoository= employeeRepoository ?? throw new ArgumentNullException(nameof(_employeeRepoository));
+            _employeeRepoository = employeeRepoository ?? throw new ArgumentNullException(nameof(_employeeRepoository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [Authorize]
@@ -58,6 +60,7 @@ namespace PrimeiraApi.Controllers
 
             if (pageQuantity > 1000)
             {
+                _logger.Log(LogLevel.Error, "Usuário fez uma consulta maior que mil registros");
                 return BadRequest("Tantos registros de uma só vez poderão causar travamento na consulta ao banco de dados.");
             }
 
@@ -66,6 +69,12 @@ namespace PrimeiraApi.Controllers
                 var totalEmployees = _employeeRepoository.GetTotalCount();
                 var employees = await _employeeRepoository.GetPerPageAsync(pageNumber-1, pageQuantity);
 
+                //if(totalEmployees < pageNumber * pageQuantity) 
+                //{
+                //    throw new Exception($"Existem apenas {totalEmployees}, página não existe!");
+                //}
+
+                _logger.LogInformation("Paginação realizada com sucesso!");
                 return Ok(new
                 {
                     totalEmployees,
